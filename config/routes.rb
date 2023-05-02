@@ -3,4 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  namespace :buildings, defaults: {format: 'json'} do
+    post :create
+  end
 end
