@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  building_id: 1
+  building_address: MyString
+  building_contact_name: MyString
+  building_contact_email: MyString
+  square_footage: MyString
+
+two:
+  building_id: 1
+  building_address: MyString
+  building_contact_name: MyString
+  building_contact_email: MyString
+  square_footage: MyString
