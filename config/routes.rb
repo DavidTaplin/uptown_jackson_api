@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     delete :destroy
   end
 
-  # resources :users
+   resources :users
   namespace :users, defaults: {format: 'json'} do
     post :create
   end
