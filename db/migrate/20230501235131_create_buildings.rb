@@ -6,6 +6,7 @@ class CreateBuildings < ActiveRecord::Migration[7.0]
       t.string :building_contact_name
       t.string :building_contact_email
       t.string :square_footage
+      t.string :image_url
 
       t.timestamps
     end

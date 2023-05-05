@@ -1,5 +1,5 @@
 class BuildingsController < ApplicationController
-  
+
   def create
     building = Building.new(building_params)
 
@@ -42,6 +42,6 @@ class BuildingsController < ApplicationController
   private
 
   def building_params
-    params.require(:building).permit(:building_address, :building_contact_name, :building_contact_email, :square_footage)
+    params.require(:building).permit(:building_address, :building_contact_name, :building_contact_email, :square_footage, :image_url)
   end
 end
