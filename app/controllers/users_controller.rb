@@ -10,7 +10,7 @@ class UsersController < ApplicationController
  end
 
  def create
-    user = User.create(user_params)
+    user = User.find(user_params)
     user.password = params[:password]
   user.password_confirmation = params[:password_confirmation]
 
