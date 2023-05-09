@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
  def create
     user = User.find(user_params)
-    user.password = params[:password]
+    user.password = BCrypt::Password.create(params[:password])#params[:password]
   user.password_confirmation = params[:password_confirmation]
 
     if user.save
