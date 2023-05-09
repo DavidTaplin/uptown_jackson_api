@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :buildings, defaults: {format: 'json'} do
     get :index
-    get 'show/:id', to: 'buildings#show', as: 'show'
     post :create
     delete :destroy
   end
+
+  get 'buildings/show/:id', to: 'buildings#show', as: 'show'
 
   # resources :users
   namespace :users, defaults: {format: 'json'} do
