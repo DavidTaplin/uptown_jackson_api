@@ -1,7 +1,12 @@
 class BuildingsController < ApplicationController
+  skip_before_action :verify_authenticity_token, raise: false
+  before_action :authenticate_devise_api_token!, only: [:create, :destroy]
+
 
   def create
+    devise_api_token = current_devise_api_token
     building = Building.new(building_params)
+    building.user_id = devise_api_token.resource_owner_id
 
     if building.save
       render_success(payload: building)
