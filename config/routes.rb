@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     delete :destroy
   end
 
+  get 'buildings/:id', to: 'buildings#show'
+  delete 'buildings/:id', to: 'buildings#destroy'
+
   devise_for :users
 
   resources :users, only: [:edit, :update, :destroy]

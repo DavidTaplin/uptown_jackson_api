@@ -28,6 +28,7 @@ class BuildingsController < ApplicationController
 
 
   def show
+    puts params[:id]
     building = Building.find(params[:id])
     render_success(payload: building)
   rescue ActiveRecord::RecordNotFound
