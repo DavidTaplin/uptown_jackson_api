@@ -44,6 +44,14 @@ class BuildingsController < ApplicationController
     render_error(errors: 'Building not found', status: 404)
   end
 
+  def update
+    building = Building.find(params[:id])
+    building.updated
+    render_success(payload: 'Building updated', status: 200)
+  rescue ActiveRecord::RecordNotFound
+    render_error(payload: 'Building not found', status: 404)
+  end
+
 
   private
 
