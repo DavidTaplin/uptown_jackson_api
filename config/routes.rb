@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :buildings, defaults: {format: 'json'} do
     get :index
     post :create
-    delete :destroy
+     delete :destroy
   end
 
   get 'buildings/:id', to: 'buildings#show'
