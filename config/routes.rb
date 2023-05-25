@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get 'buildings/:id', to: 'buildings#show'
   delete 'buildings/:id', to: 'buildings#destroy'
-  update 'buildings/:id', to: 'buildings#update'
+
 
   devise_for :users
 
