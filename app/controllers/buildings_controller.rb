@@ -1,7 +1,6 @@
 class BuildingsController < ApplicationController
   skip_before_action :verify_authenticity_token, raise: false
-  before_action :authenticate_devise_api_token!, only: [:create, :destroy, :update]
-
+  before_action :authenticate_devise_api_token!, only: [:create, :destroy, :update, :get_user_buildings]
 
   def create
     devise_api_token = current_devise_api_token
@@ -38,20 +37,37 @@ class BuildingsController < ApplicationController
 
   def destroy
     building = Building.find(params[:id])
-    building.destroy
-    render_success(payload: 'Building deleted successfully')
+    if building.user_id == current_devise_api_token.resource_owner_id
+      building.destroy
+      render_success(payload: 'Building deleted successfully')
+    else
+      render_error(errors: 'Access Denied', status: 403)
+    end
   rescue ActiveRecord::RecordNotFound
     render_error(errors: 'Building not found', status: 404)
   end
 
   def update
     building = Building.find(params[:id])
-    building.updated
-    render_success(payload: 'Building updated')
+    if building.user_id == current_devise_api_token.resource_owner_id
+      building.update(building_params)
+      render_success(payload: 'Building updated')
+    else
+      render_error(errors: 'Access Denied', status: 403)
+    end
   rescue ActiveRecord::RecordNotFound
     render_error(errors: 'Building could not be updated', status: 404)
   end
 
+  def get_user_buildings
+    begin
+      resource_owner_id = current_devise_api_token.resource_owner_id
+      buildings = Building.where(user_id: resource_owner_id)
+      render_success(payload: buildings)
+    rescue => e
+      render_error(errors: e.message, status: 500)
+    end
+  end
 
   private
 

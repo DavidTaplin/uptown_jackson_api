@@ -7,15 +7,13 @@ Rails.application.routes.draw do
     get :index
     post :create
     delete :destroy
+    patch :update
   end
-
+  get 'buildings/user', to: 'buildings#get_user_buildings'
   get 'buildings/:id', to: 'buildings#show'
   delete 'buildings/:id', to: 'buildings#destroy'
 
-
   devise_for :users
 
-  resources :users, only: [:edit, :update, :destroy]
-
-
+  resources :users, only: [:update, :destroy]
 end

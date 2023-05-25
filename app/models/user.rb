@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :api
 
   has_many :buildings
+  validates :email, uniqueness: true
 end
