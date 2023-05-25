@@ -49,7 +49,7 @@ class BuildingsController < ApplicationController
     building.updated
     render_success(payload: 'Building updated')
   rescue ActiveRecord::RecordNotFound
-    render_error(errors: 'Building not found', status: 404)
+    render_error(errors: 'Building could not be updated', status: 404)
   end
 
 
